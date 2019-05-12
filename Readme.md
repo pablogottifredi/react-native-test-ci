@@ -43,7 +43,7 @@ $ react-native run-android
 ...
 ```
 
-##  Create a new react native project
+## Create a new react native project
 
 Use the React Native CLI to initialize the project:
 ```
