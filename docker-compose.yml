@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  base-react-native:
+    container_name: boilerplate-react-native
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: boilerplate-react-native
+
+    ports:
+      - "19000:19000"
+      - "19001:19001"
+    networks:
+      - frontend-dev
+
+networks:
+  frontend-dev:
+    driver: "bridge"
