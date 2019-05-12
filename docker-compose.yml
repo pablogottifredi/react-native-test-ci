@@ -7,7 +7,8 @@ services:
       context: .
       dockerfile: Dockerfile
     image: boilerplate-react-native
-
+    volumes: 
+      - ./src:/project
     ports:
       - "19000:19000"
       - "19001:19001"
