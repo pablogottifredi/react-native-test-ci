@@ -2,19 +2,24 @@ version: "3"
 
 services:
   base-react-native:
-    container_name: boilerplate-react-native
+    container_name: boilerplate-react-native-img
+    privileged: true
+    command: [ "/bin/bash", "-c", "--", "while true; do sleep 30; done;" ]
+
+    environment:
+      - DISPLAY
+      - ANDROID_AVD_HOME=/img
     build: 
       context: .
       dockerfile: Dockerfile
     image: boilerplate-react-native
-    volumes: 
-      - ./src:/project
     ports:
-      - "19000:19000"
-      - "19001:19001"
-    networks:
-      - frontend-dev
-
-networks:
-  frontend-dev:
-    driver: "bridge"
+      - 8081:8081
+      - 19001:19001
+      - 19000:19000
+      - 5037:5037
+    volumes: 
+      - ./bash:/usr/local/bin/
+      - ./src:/project
+      #- ./img:/img
+    network_mode: "host"

@@ -1,4 +1,3 @@
-
 FROM ubuntu:18.04
 
 RUN apt-get update
@@ -40,6 +39,9 @@ RUN yes | sdkmanager --update --verbose
 RUN yes | sdkmanager --licenses
 # Done installing Android SDK
 
+RUN apt update -y
+RUN apt upgrade -y
+
 # Set up React Native
 ## Install node, yarn, and react-native-cli
 RUN apt-get install -y nodejs npm \
@@ -51,6 +53,7 @@ RUN apt-get install -y nodejs npm \
 EXPOSE 8081
 ## Install watchman - required for React Native to build native code, and for
 ## hot code reloading
+
 RUN apt-get install -y git libssl-dev autoconf automake libtool python-dev \
   pkg-config
 RUN git clone https://github.com/facebook/watchman.git \
@@ -69,7 +72,6 @@ ARG TINI_VERSION=v0.18.0
 ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini /tini
 RUN chmod +x /tini
 
-ENTRYPOINT ["/tini", "--"]
 # Done installing Tini
 
 # Set up non-root user
@@ -82,6 +84,11 @@ RUN chown -R $USERNAME:$USERNAME $ANDROID_HOME
 # Allow the Docker user to play audio through the host's pulseaudio
 ENV XDG_RUNTIME_DIR /run/user/$UID
 RUN mkdir -p $XDG_RUNTIME_DIR && chown -R $USERNAME:$USERNAME $XDG_RUNTIME_DIR
+
+COPY bash/docker-entrypoint.sh /usr/local/bin/
+RUN chmod +x $USER /usr/local/bin/docker-entrypoint.sh
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
+
 ## No need for root from here on out, so switch to the non-root user to avoid
 ## complication (eg. having to chown more files due to creating as root, etc.)
 USER $USERNAME
@@ -95,6 +102,11 @@ RUN mkdir $USER_BIN_DIR \
 && chmod +x $USER_BIN_DIR/emulator
 ENV PATH $USER_BIN_DIR:$PATH
 # Done setting up non-root user
+
+COPY src /project
+
+ENV YARN_PATH /usr/local/lib/node_modules/yarn/bin
+ENV PATH $YARN_PATH:$PATH
 
 ENV PROJECT_MOUNT=/project
 WORKDIR $PROJECT_MOUNT
