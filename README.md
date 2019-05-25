@@ -75,7 +75,7 @@ You can use your own physical device if you active the developer options
 
 
 #Pending
-[ ] Use volumes to make the images
-[ ] Replace dist folder outside the src 
-[ ] Configure script to read tty of each command
-[ ] Config correcty host+ command to restrict clients
+- [ ] Use volumes to make the images
+- [ ] Replace dist folder outside the src 
+- [ ] Configure script to read tty of each command
+- [ ] Config correcty host+ command to restrict clients
