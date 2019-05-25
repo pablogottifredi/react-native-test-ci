@@ -1,2 +1,5 @@
 .vscode/
 src/node_modules/
+src/android/
+src/ios/
+build/

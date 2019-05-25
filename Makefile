@@ -8,15 +8,22 @@ NC :='\033[0m' # No Color
 
 build:
 	@echo -e ${INFO} Compose image and launch ${NC}
-	docker-compose -f docker-compose.yml up --build 
+	docker-compose down
+	docker-compose -f docker-compose.yml up --build -d
 
 watch:
+	docker-compose down
 	@echo -e ${INFO} Share host DISPLAY ${NC}
-	xhost local:docker
+	xhost +
 	@echo -e ${INFO} Compose image and launch container ${NC}
-	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up 
+	docker-compose -f docker-compose.yml -f docker-compose-dev.yml up -d
 	@echo -e ${INFO} Welcome to shell ${NC}
-	docker exec -ti boilerplate-react-native-img shell
+	docker exec -ti react-native-test-ci docker-entrypoint.sh shell
+
+run:
+	docker exec -ti react-native-test-ci docker-entrypoint.sh ${command}
+runv:
+	docker exec -d react-native-test-ci docker-entrypoint.sh ${command}
 
 down:
 	docker-compose down
