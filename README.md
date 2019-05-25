@@ -79,3 +79,4 @@ You can use your own physical device if you active the developer options
 - [ ] Replace dist folder outside the src 
 - [ ] Configure script to read tty of each command
 - [ ] Config correcty host+ command to restrict clients
+- [ ] CI pipeline to production build
