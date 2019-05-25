@@ -1,4 +1,4 @@
-# Disclaimer
+### Disclaimer
 
 Experimental docker for test pruposes.
 Partially based over 
@@ -74,7 +74,7 @@ localhost:8081/debugger-ui
 You can use your own physical device if you active the developer options
 
 
-#Pending
+## Pending
 - [ ] Use volumes to make the images
 - [ ] Replace dist folder outside the src 
 - [ ] Configure script to read tty of each command
