@@ -12,7 +12,7 @@ Use at your own risk!
 Clone the repository and build the image:
 ```
 git clone https://github.com/pablogottifredi/react-native-test-ci
-cd react-native-docker
+cd react-native-test-ci
 ```
 
 
