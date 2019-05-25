@@ -8,12 +8,13 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
+import { whileStatement } from '@babel/types';
 import AppContainer from './components/AppNavigator';
 
 export default class App extends React.Component {
   render() {
     return (
-        <AppContainer />
+      <AppContainer/>
     );
   }
 }
@@ -25,5 +26,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#06f',
         padding: 10
+    },
+    text: {
+      fontSize:60,
+      color: 'white'
     }
 });

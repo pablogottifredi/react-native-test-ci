@@ -6,12 +6,12 @@ class LandingView extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>
-                    Soy la segunda vista
+                    Landing View
                 </Text>
                 <TouchableHighlight style={styles.button}
                     onPress={()=> this.props.navigation.navigate('ExternalDoc')}>
                     <Text style={styles.button_text}>
-                        ok ir a la pagina
+                        Go To External Navigator
                     </Text>
                 </TouchableHighlight>
 

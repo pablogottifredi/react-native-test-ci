@@ -35,12 +35,13 @@ RUN yes | sdkmanager --licenses
 
 # Set up React Native
 ## Install node, yarn, and react-native-cli
+RUN apt-get install -y git libssl-dev autoconf automake libtool python-dev pkg-config
+
 RUN apt-get install -y nodejs
 RUN apt-get install -y npm
 RUN npm install -g react-native-cli
 RUN apt-get install -y yarn 
 
-RUN apt-get install -y git libssl-dev autoconf automake libtool python-dev pkg-config
 
 RUN git clone https://github.com/facebook/watchman.git \
 && cd watchman \
@@ -75,7 +76,6 @@ ENV PATH $USER_BIN_DIR:$PATH
 
 COPY src /project
 
-ENV YARN_PATH /usr/local/lib/node_modules/yarn/bin
 ENV PATH $YARN_PATH:$PATH
 
 ENV PROJECT_MOUNT=/project

@@ -8,6 +8,7 @@ services:
     environment:
       - DISPLAY
       - ANDROID_AVD_HOME=/img
+      - NODE_ENV=production
     build: 
       context: .
       dockerfile: Dockerfile

@@ -6,8 +6,7 @@ class HomeView extends Component {
         return (
             <View style={styles.container}>
                 <Text style={styles.text}>
-                    Hola nanita, te saludo soy una app
-                    Estoy adentro de un emulador
+                    Home View Screen
                 </Text>
 
                 <Button 

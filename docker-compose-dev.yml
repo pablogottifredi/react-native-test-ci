@@ -3,5 +3,8 @@ version: "3"
 services:
   react-native-test-ci:
     command: [ "/bin/bash", "-c", "--", "while true; do sleep 30; done;" ]
- 
+    environment:
+      - DISPLAY
+      - ANDROID_AVD_HOME=/img
+      - NODE_ENV=development
       

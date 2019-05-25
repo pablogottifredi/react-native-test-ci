@@ -5,6 +5,7 @@ MAKEPATH := $(abspath $(lastword $(MAKEFILE_LIST)))
 PWD := $(dir $(MAKEPATH))
 INFO := '\033[0;34m' # Blue
 NC :='\033[0m' # No Color
+VER := ${VERBOSE}
 
 build:
 	@echo -e ${INFO} Compose image and launch ${NC}
@@ -21,9 +22,12 @@ watch:
 	docker exec -ti react-native-test-ci docker-entrypoint.sh shell
 
 run:
-	docker exec -ti react-native-test-ci docker-entrypoint.sh ${command}
-runv:
-	docker exec -d react-native-test-ci docker-entrypoint.sh ${command}
+ifeq (${VERBOSE},0)
+	docker exec -d react-native-test-ci docker-entrypoint.sh ${ACTION}
+else
+	docker exec -ti react-native-test-ci docker-entrypoint.sh ${ACTION}
+endif
+	
 
 down:
 	docker-compose down
